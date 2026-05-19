@@ -1,0 +1,247 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <title>Pedal Quest — Privacy Policy</title>
+  <meta name="description" content="Privacy policy for Pedal Quest, a private cycling adventure diary for families." />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Pedal Quest — Privacy Policy" />
+  <meta property="og:description" content="How Pedal Quest handles your child's information. No accounts, no analytics, no third-party tracking." />
+  <meta property="og:image" content="https://pedalquest.iamcoding.uk/PQTitle.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="icon" type="image/png" href="PQTitle.png" />
+
+  <script>
+    (function () {
+      try {
+        var t = localStorage.getItem("pedalquest-theme") || "sky";
+        document.documentElement.setAttribute("data-theme", t);
+      } catch (e) {}
+    })();
+  </script>
+</head>
+
+<body data-theme="sky">
+  <div class="theme-decor" aria-hidden="true"></div>
+
+  <header class="site-bar" role="banner">
+    <a class="site-mark" href="index.html" aria-label="Pedal Quest home">Pedal Quest</a>
+    <nav aria-label="Primary">
+      <a href="index.html">Support</a>
+      <a href="marketing.html">About</a>
+      <a href="privacy.html">Privacy</a>
+    </nav>
+    <div class="theme-picker" data-theme-picker></div>
+  </header>
+
+  <main class="page-shell">
+    <article class="content-card">
+
+      <header class="policy-header reveal">
+        <img
+          class="title-logo small"
+          src="PQTitle.png"
+          alt="Pedal Quest"
+        />
+
+        <p class="eyebrow">Privacy</p>
+
+        <h1>Privacy Policy</h1>
+
+        <p class="updated">
+          <strong>Last updated:</strong> 18 May 2026
+        </p>
+
+        <p class="intro">
+          Pedal Quest is a private cycling adventure diary for children and families.
+          We have built privacy into the app from day one. This page explains, in plain language,
+          how Pedal Quest handles your information.
+        </p>
+      </header>
+
+      <section class="reveal">
+        <h2>The short version</h2>
+        <ul>
+          <li>We do not have any servers. We, the developer, never see or receive any of your data.</li>
+          <li>Everything your child records — rides, photos, badges and nicknames — is stored on your device and, optionally, in your own private iCloud.</li>
+          <li>There are no accounts, no advertisements, no analytics SDKs and no third-party trackers.</li>
+          <li>The only network requests the app makes are to Apple's own services: Apple iCloud for your private sync, Apple Maps for map tiles, and Apple WeatherKit for the local weather.</li>
+        </ul>
+      </section>
+
+      <section class="reveal">
+        <h2>What the app stores</h2>
+        <p>
+          On your device, and if iCloud Drive is enabled, in your private iCloud database, Pedal Quest may store:
+        </p>
+
+        <ul>
+          <li>A nickname you choose for your child.</li>
+          <li>Their date of birth and interests, if entered, used only to make the app feel personal.</li>
+          <li>An optional bike photo and avatar.</li>
+          <li>Each ride's GPS trail, distance, time, and any photos or diary notes attached.</li>
+          <li>A small weather snapshot taken at the start of each ride (condition icon, temperature and a friendly phrase) so the memory of what the weather was like stays with the ride.</li>
+          <li>Badges earned and custom badges invented.</li>
+          <li>Your settings, including units, theme, sound and haptic preferences, and the optional grown-up PIN (stored in the iOS Keychain on this device — never synced).</li>
+        </ul>
+
+        <p>
+          We, the developer, have no access to any of this. It lives on your device and, if enabled,
+          in your Apple iCloud account.
+        </p>
+      </section>
+
+      <section class="reveal">
+        <h2>Location</h2>
+        <p>
+          Pedal Quest asks for the <strong>"While Using App"</strong> location permission only.
+          We do not request "Always" location.
+        </p>
+
+        <p>
+          During an <strong>active ride</strong>, location is used to draw your trail on Apple Maps, calculate distance and speed, and show your route on the map. Location updates continue while the screen is locked so the app can keep recording when the phone is in a backpack or pocket. iOS shows a small blue indicator in the status bar while that's happening, and tracking stops as soon as the ride ends.
+        </p>
+
+        <p>
+          Location is also used <strong>briefly</strong>, in the foreground, when the home screen or a paused ride shows the local weather — see the Weather section below.
+        </p>
+
+        <p>
+          The trail is recorded as a series of small GPS points that stay on your iPhone and, if you're signed in to iCloud, in your own private iCloud. Location data is never sent to us or to any third party.
+        </p>
+      </section>
+
+      <section class="reveal">
+        <h2>Weather</h2>
+        <p>
+          When the home screen, paused tracker, ride summary or ride detail screen shows the local weather, Pedal Quest sends your current location to <strong>Apple's WeatherKit service</strong> to fetch the forecast.
+        </p>
+
+        <p>
+          The request goes only to Apple — never to us, never to any third party. Apple's privacy promise covers what they do with the request, and your location is not used by Apple for advertising or profiling.
+        </p>
+
+        <p>
+          The weather snapshot taken at the start of each ride (a condition icon, the temperature, and a friendly phrase) is kept with the ride in your own iCloud, so revisiting an old ride still shows the same memory.
+        </p>
+      </section>
+
+      <section class="reveal">
+        <h2>Camera and photos</h2>
+        <p>
+          Camera and photo access is optional. The camera is used only if you choose to take an avatar photo, take a photo of your bike, or take a photo during a ride. Photo-library access is used only if you choose to pick an existing photo for your avatar or bike.
+        </p>
+
+        <p>
+          Photos taken in the app are stored alongside the ride or profile in your own iCloud. EXIF metadata, including any location embedded in the photo, is stripped before storage.
+        </p>
+
+        <p>
+          A grown-up can also turn on an optional "Save ride photos to your Photos app" setting. When that's on, Pedal Quest asks iOS for <em>write-only</em> photo-library access — we never read existing photos, only add ride photos you've already taken inside the app. When the setting is off, photos stay inside Pedal Quest.
+        </p>
+      </section>
+
+      <section class="reveal">
+        <h2>Bluetooth and local network ride-buddy pairing</h2>
+        <p>
+          Ride-buddy pairing is optional and <strong>off by default</strong>. When a grown-up enables it,
+          two nearby phones running Pedal Quest can pair using Apple's MultipeerConnectivity framework.
+          The session is encrypted. No data is sent over the internet.
+        </p>
+
+        <p>
+          While paired, each phone sends the other a small introduction: the rider's chosen nickname,
+          their avatar style, and, if they have set one, a small thumbnail of their avatar photo,
+          about 96 pixels square. The buddy's phone uses this to draw them on the map and on the
+          "paired with" card. The thumbnail is held in memory for the ride only and is never saved
+          to disk on the buddy's device.
+        </p>
+
+        <p>
+          When you finish a ride while paired with a buddy, a small memory is saved with that ride:
+          the buddy's chosen nickname, their avatar style, and any badges they earned during the ride.
+          <strong>The avatar photo is not part of this memory</strong>; only the symbol-style avatar is kept.
+          This memory lives in your own iCloud private database and never leaves your devices. We cannot see it.
+          You can forget the memory from any individual ride at any time, and the buddy's data is wiped
+          immediately when you do.
+        </p>
+
+        <p>
+          The "Favourite ride buddies" list, used for one-tap reconnection, stores only the buddy's chosen nickname,
+          the symbol-style avatar they use, and an opaque pairing identifier. It does not include badges,
+          ride history or any photo.
+        </p>
+      </section>
+
+      <section class="reveal">
+        <h2>What the child can type</h2>
+        <p>
+          Nicknames, ride titles, diary notes, companion names and custom badge names are run through a
+          local, on-device word filter to help block obviously inappropriate words before they are saved.
+          The filter is built into the app itself — nothing your child types is sent anywhere to be checked.
+        </p>
+      </section>
+
+      <section class="reveal">
+        <h2>iCloud</h2>
+        <p>
+          Pedal Quest uses your own iCloud Drive private database via SwiftData to sync rides between your devices.
+          We, the developer, cannot see this data. The app works fully without iCloud too.
+        </p>
+      </section>
+
+      <section class="reveal">
+        <h2>Children</h2>
+        <p>
+          Pedal Quest is designed for children but does not require children to provide any personal information.
+          The nickname, date of birth, interests and bike-colour fields are optional and used only on-device
+          to personalise the experience. No accounts are created. No data is shared with us or any third party.
+        </p>
+      </section>
+
+      <section class="reveal">
+        <h2>Third parties</h2>
+        <p>
+          We do not use any third-party SDKs, analytics tools, advertising networks or social-login providers.
+          The only network requests the app makes are to Apple's own services (iCloud, Apple Maps, WeatherKit),
+          all under your existing relationship with Apple.
+        </p>
+      </section>
+
+      <section class="reveal">
+        <h2>Changes</h2>
+        <p>
+          If we ever change this policy, we will update the date at the top of this page.
+          Material changes will be announced in the app.
+        </p>
+      </section>
+
+      <section class="reveal">
+        <h2>Contact</h2>
+        <p>
+          For support or privacy questions, please email:
+          <a href="mailto:marc@iamcoding.uk">marc@iamcoding.uk</a>
+        </p>
+
+        <div class="link-grid">
+          <a class="button secondary" href="index.html">← Back to support</a>
+          <a class="button secondary" href="marketing.html">About Pedal Quest</a>
+        </div>
+      </section>
+
+      <footer>
+        <p>
+          © 2026 Pedal Quest. All rights reserved.
+        </p>
+      </footer>
+    </article>
+  </main>
+
+  <script src="app.js" defer></script>
+</body>
+</html>

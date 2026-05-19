@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <title>Pedal Quest — Wrong turn</title>
+  <meta name="description" content="That page is not on the trail. Head back to the Pedal Quest support pages." />
+
+  <link rel="stylesheet" href="/styles.css" />
+  <link rel="icon" type="image/png" href="/PQTitle.png" />
+
+  <script>
+    (function () {
+      try {
+        var t = localStorage.getItem("pedalquest-theme") || "sky";
+        document.documentElement.setAttribute("data-theme", t);
+      } catch (e) {}
+    })();
+  </script>
+</head>
+
+<body data-theme="sky">
+  <div class="theme-decor" aria-hidden="true"></div>
+
+  <header class="site-bar" role="banner">
+    <a class="site-mark" href="/" aria-label="Pedal Quest home">Pedal Quest</a>
+    <nav aria-label="Primary">
+      <a href="/index.html">Support</a>
+      <a href="/marketing.html">About</a>
+      <a href="/privacy.html">Privacy</a>
+    </nav>
+    <div class="theme-picker" data-theme-picker></div>
+  </header>
+
+  <main class="page-shell">
+    <section class="hero-card">
+      <img
+        class="title-logo small float-soft"
+        src="/PQTitle.png"
+        alt="Pedal Quest"
+      />
+
+      <p class="eyebrow">Wrong turn</p>
+
+      <h1>That page is not on the trail.</h1>
+
+      <p class="intro">
+        We could not find what you were looking for. Have a look at the links below
+        — they will take you somewhere useful.
+      </p>
+
+      <div class="link-grid">
+        <a class="button primary" href="/index.html">Back to support</a>
+        <a class="button secondary" href="/marketing.html">About Pedal Quest</a>
+        <a class="button secondary" href="/privacy.html">Privacy policy</a>
+      </div>
+    </section>
+
+    <footer>
+      <p>© 2026 Pedal Quest. All rights reserved.</p>
+    </footer>
+  </main>
+
+  <script src="/app.js" defer></script>
+</body>
+</html>
