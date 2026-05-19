@@ -335,19 +335,21 @@ body[data-theme="dinosaur"] .theme-decor::before {
 }
 
 body[data-theme="dinosaur"] .theme-decor::after {
+  /* Lizard sits in the lower-left margin so the content cards' backdrop-filter
+     does not blur it. Bigger opacity and a smaller, sharper shadow for clarity. */
   content: "";
   position: absolute;
-  bottom: 38%;
-  left: 18%;
-  width: 36%;
-  max-width: 460px;
+  bottom: 8%;
+  left: 1%;
+  width: 30%;
+  max-width: 380px;
   aspect-ratio: 2 / 1;
-  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 100'><g><ellipse cx='100' cy='55' rx='52' ry='16' fill='%234c8c4c' opacity='0.75'/><ellipse cx='45' cy='45' rx='18' ry='12' fill='%234c8c4c' opacity='0.75'/><circle cx='40' cy='42' r='2' fill='%23000' opacity='0.75'/><path d='M 150 55 Q 175 50 190 35 Q 195 30 188 30 Q 175 38 148 53 Z' fill='%234c8c4c' opacity='0.75'/><path d='M 75 65 L 70 82 L 82 82 L 85 67 Z' fill='%232e6133' opacity='0.8'/><path d='M 125 68 L 120 85 L 132 85 L 135 70 Z' fill='%232e6133' opacity='0.8'/></g></svg>");
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 100'><g><ellipse cx='100' cy='55' rx='52' ry='16' fill='%234c8c4c' opacity='0.94'/><ellipse cx='45' cy='45' rx='18' ry='12' fill='%234c8c4c' opacity='0.94'/><circle cx='40' cy='42' r='2.4' fill='%23000' opacity='0.95'/><path d='M 150 55 Q 175 50 190 35 Q 195 30 188 30 Q 175 38 148 53 Z' fill='%234c8c4c' opacity='0.94'/><path d='M 75 65 L 70 82 L 82 82 L 85 67 Z' fill='%232e6133' opacity='0.96'/><path d='M 125 68 L 120 85 L 132 85 L 135 70 Z' fill='%232e6133' opacity='0.96'/></g></svg>");
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
   animation: dino-bob 3.6s ease-in-out infinite;
-  filter: drop-shadow(0 10px 16px rgba(0, 0, 0, 0.25));
+  filter: drop-shadow(0 6px 8px rgba(0, 0, 0, 0.22));
 }
 
 /* ---- Space: twinkling stars + glowing planet + Saturn ---- */
@@ -369,6 +371,7 @@ body[data-theme="space"] .theme-decor::after {
   background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1000 600' preserveAspectRatio='xMidYMid slice'><g transform='translate(320 228)'><circle r='126' fill='none' stroke='%23fff7d9' stroke-width='2' opacity='0.4'/><circle r='90' fill='%23fff7d9' opacity='0.9'/></g><g transform='translate(180 468)'><ellipse rx='42' ry='6' fill='none' stroke='%23f2d98c' stroke-width='3' opacity='0.85' transform='rotate(-18)'/><circle r='25' fill='%238c5ba6'/><ellipse rx='42' ry='6' fill='none' stroke='%23f2d98c' stroke-width='3' opacity='0.55' transform='rotate(-18) translate(0 1)'/></g></svg>");
   background-repeat: no-repeat;
   background-size: 100% 100%;
+  animation: planet-drift 14s ease-in-out infinite;
 }
 
 /* ---- Racing Track: two horizontal dashed bands + chequered flag ---- */
@@ -1215,8 +1218,17 @@ footer p {
 }
 
 @keyframes twinkle {
-  0% { opacity: 0.6; }
-  100% { opacity: 1; }
+  /* Bigger swing makes the stars actually visibly twinkle on screen. */
+  0%, 100% { opacity: 0.35; }
+  50% { opacity: 1; }
+}
+
+@keyframes planet-drift {
+  /* Gentle floating motion for the planet layer. */
+  0%, 100% { transform: translate(0, 0); }
+  25% { transform: translate(6px, -10px); }
+  50% { transform: translate(10px, 0); }
+  75% { transform: translate(6px, 10px); }
 }
 
 @keyframes pop-in {
