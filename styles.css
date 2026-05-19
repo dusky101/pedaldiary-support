@@ -1201,18 +1201,17 @@ footer p {
   50% { transform: scale(1.06); opacity: 1; }
 }
 
-/* Use vh (not %) because percentages of background-position resolve to
-   (container - image) * %, which is 0 when image and container are the
-   same size — the animation runs but nothing moves. vh forces real
-   pixel motion across one tile height. */
+/* Use the shorthand `background-position` (not the `-y` sub-property)
+   for Safari compatibility, and vh (not %) so motion actually happens
+   when the image and container are the same height. */
 @keyframes leaf-fall {
-  from { background-position-y: 0; }
-  to { background-position-y: 100vh; }
+  from { background-position: 0 0; }
+  to { background-position: 0 100vh; }
 }
 
 @keyframes bubble-rise {
-  from { background-position-y: 100vh; }
-  to { background-position-y: 0; }
+  from { background-position: 0 100vh; }
+  to { background-position: 0 0; }
 }
 
 @keyframes twinkle {
