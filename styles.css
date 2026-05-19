@@ -284,7 +284,7 @@ body[data-theme="forest"] .theme-decor::before {
   content: "";
   position: absolute;
   inset: 0;
-  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1000 600' preserveAspectRatio='xMidYMax slice'><defs><g id='t'><path d='M 0 0 L -40 -55 L -22 -55 L -30 -85 L -18 -85 L 0 -100 L 18 -85 L 30 -85 L 22 -55 L 40 -55 Z' fill='%231a5230' opacity='0.82'/></g></defs><use href='%23t' transform='translate(80 600) scale(3.3)'/><use href='%23t' transform='translate(280 600) scale(3.9)'/><use href='%23t' transform='translate(500 600) scale(3.0)'/><use href='%23t' transform='translate(720 600) scale(3.7)'/><use href='%23t' transform='translate(920 600) scale(3.3)'/></svg>");
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1000 600' preserveAspectRatio='xMidYMax slice'><defs><g id='t'><path d='M 0 -100 L 22 -68 L 10 -68 L 36 -34 L 16 -34 L 50 0 L -50 0 L -16 -34 L -36 -34 L -10 -68 L -22 -68 Z' fill='%231a5230' opacity='0.82'/></g></defs><use href='%23t' transform='translate(80 600) scale(2.6)'/><use href='%23t' transform='translate(280 600) scale(3.1)'/><use href='%23t' transform='translate(500 600) scale(2.4)'/><use href='%23t' transform='translate(720 600) scale(3.0)'/><use href='%23t' transform='translate(920 600) scale(2.6)'/></svg>");
   background-repeat: no-repeat;
   background-size: 100% auto;
   background-position: center bottom;
@@ -1201,14 +1201,18 @@ footer p {
   50% { transform: scale(1.06); opacity: 1; }
 }
 
+/* Use vh (not %) because percentages of background-position resolve to
+   (container - image) * %, which is 0 when image and container are the
+   same size — the animation runs but nothing moves. vh forces real
+   pixel motion across one tile height. */
 @keyframes leaf-fall {
-  from { background-position-y: -10%; }
-  to { background-position-y: 110%; }
+  from { background-position-y: 0; }
+  to { background-position-y: 100vh; }
 }
 
 @keyframes bubble-rise {
-  from { background-position-y: 110%; }
-  to { background-position-y: -10%; }
+  from { background-position-y: 100vh; }
+  to { background-position-y: 0; }
 }
 
 @keyframes twinkle {
