@@ -737,6 +737,11 @@ strong {
   text-align: center;
 }
 
+.policy-header {
+  /* Breathing room between the intro paragraphs and the first section. */
+  padding-bottom: clamp(28px, 5vw, 54px);
+}
+
 .marketing-hero {
   position: relative;
   padding: clamp(20px, 4vw, 36px) 0 clamp(28px, 5vw, 54px);
