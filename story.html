@@ -1,0 +1,324 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <title>Pedal Quest — The story behind it</title>
+  <meta
+    name="description"
+    content="The full story behind Pedal Quest — a private iOS cycling diary built by a UK indie developer for his 9-year-old son, Charlie, with every feature traced back to a real conversation with him."
+  />
+
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="Pedal Quest — The story behind it" />
+  <meta property="og:description" content="A UK indie developer, a 9-year-old, a new bike, and a five-month build with the son as both client and tester." />
+  <meta property="og:image" content="https://pedalquest.iamcoding.uk/PQTitle.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="icon" href="/favicon.ico" sizes="any" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+
+  <script>
+    (function () {
+      try {
+        var t = localStorage.getItem("pedalquest-theme") || "sky";
+        document.documentElement.setAttribute("data-theme", t);
+      } catch (e) {}
+    })();
+  </script>
+</head>
+
+<body data-theme="sky">
+  <div class="theme-decor" aria-hidden="true"></div>
+
+  <header class="site-bar" role="banner">
+    <a class="site-mark" href="index.html" aria-label="Pedal Quest home">Pedal Quest</a>
+    <nav aria-label="Primary">
+      <a href="index.html">Support</a>
+      <a href="marketing.html">About</a>
+      <a href="privacy.html">Privacy</a>
+    </nav>
+    <div class="theme-picker" data-theme-picker></div>
+  </header>
+
+  <main class="page-shell">
+    <article class="content-card marketing-card">
+
+      <header class="marketing-hero reveal">
+        <img
+          class="title-logo small"
+          src="PQTitle.png"
+          alt="Pedal Quest"
+        />
+
+        <p class="eyebrow">The story behind Pedal Quest</p>
+
+        <h1>I built this for Charlie.</h1>
+
+        <p class="intro">
+          Pedal Quest is a private cycling adventure diary, built by a single UK indie developer
+          for his 9-year-old son. Every feature in the app traces back to a real conversation
+          with him — his wishlist on day one, his bedtime ideas, his bug reports, his test
+          sessions. This is the full story.
+        </p>
+
+        <a
+          href="https://apps.apple.com/app/id6769257760"
+          class="appstore-badge"
+          target="_blank"
+          rel="noopener"
+          aria-label="Download Pedal Quest on the App Store"
+        >
+          <img
+            src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/en-gb?releaseDate=1747879200"
+            alt="Download on the App Store"
+            height="56"
+          />
+        </a>
+      </header>
+
+      <section class="feature-panel reveal">
+        <div>
+          <p class="section-kicker">1 · The bike, and the missing app</p>
+          <h2>I got Charlie a new bike, and then I couldn't find an app to go with it.</h2>
+          <p>
+            Charlie is 9. I got him a new bike recently and thought it would be cool for him
+            to log his journeys and see how far he was riding. So I went looking for a cycling
+            app to put on his iPhone.
+          </p>
+          <p>
+            Every one I tried wanted an account. Several were full of adverts. A lot of them
+            were leaderboards-against-strangers dressed up as fitness trackers. And several
+            wouldn't even let him join because of his age. None of them were the thing I
+            wanted to give him.
+          </p>
+          <p>
+            So one evening I sat down with him and asked what he'd want if I built him one
+            instead.
+          </p>
+        </div>
+      </section>
+
+      <section class="feature-panel feature-panel-warm reveal">
+        <div>
+          <p class="section-kicker">2 · Charlie's wishlist</p>
+          <h2>Seven things, in his own words.</h2>
+          <p>His list, almost verbatim:</p>
+          <ul class="check-list">
+            <li>Earn badges.</li>
+            <li>Track his speed.</li>
+            <li>Track how far he's gone.</li>
+            <li>Be fun.</li>
+            <li>Take pictures during the ride.</li>
+            <li>Record who he rode with.</li>
+            <li>Be able to race whoever he's riding with.</li>
+          </ul>
+          <p>
+            I thought about it for a while, decided it was doable, and got to work. Every one
+            of those seven items is in the live app today.
+          </p>
+        </div>
+      </section>
+
+      <section class="feature-panel reveal">
+        <div>
+          <p class="section-kicker">3 · Five months of nights and weekends</p>
+          <h2>Built natively, with no third-party libraries.</h2>
+          <p>
+            This is my first ever iOS app. I built it entirely with Apple frameworks —
+            SwiftUI with Liquid Glass surfaces throughout, SwiftData with a private CloudKit
+            database for sync, MapKit for the route, WeatherKit for the local forecast,
+            Core Location for the trail, and MultipeerConnectivity for the optional
+            ride-buddy pairing. No third-party SDKs. No analytics. No advertising frameworks.
+          </p>
+          <p>
+            "Be fun" became hyperspeed sounds and graphics that fire on personal-speed
+            milestones, so the app actually does something delightful when you go faster
+            than you've ever gone before. Badges came in for speed, distance, incline and
+            ride milestones, all surfaced in a Hall of Fame that celebrates the rider's
+            own progress with no comparison to anyone else.
+          </p>
+        </div>
+      </section>
+
+      <section class="feature-panel feature-panel-warm reveal">
+        <div>
+          <p class="section-kicker">4 · Bedtime</p>
+          <h2>"Stop bad words from being added."</h2>
+          <p>
+            One night, in the classic 9-year-old way of trying to put off actually going to
+            sleep, Charlie added one more item to the wishlist. He looked up from his pillow
+            and said:
+          </p>
+          <p class="intro">"Stop bad words from being added."</p>
+          <p>
+            That was the entire brief. I have no idea why it was on his mind, but I thought
+            it was a pretty cool addition. The next day I built an on-device profanity
+            filter that checks every nickname, every diary entry and every custom-badge
+            name before it's saved. Nothing ever leaves the device to be checked.
+          </p>
+        </div>
+      </section>
+
+      <section class="feature-panel reveal">
+        <div>
+          <p class="section-kicker">5 · The first proper ride</p>
+          <h2>A bug report from a 9-year-old.</h2>
+          <p>
+            After his first proper ride with an early version of the app, Charlie came back
+            with the single most important piece of feedback I had received on anything I
+            had ever built. He said:
+          </p>
+          <p class="intro">"Dad, when the phone is locked it doesn't track the speed or distance properly."</p>
+          <p>
+            He was right. The location background mode and the metrics calculator weren't
+            playing nicely together. I fixed it. Pedal Quest now records cleanly through
+            a locked screen — phone in a backpack, no fuss.
+          </p>
+          <p>
+            It's the bug report I'm proudest of having received. It was specific, accurate,
+            and entirely unprompted.
+          </p>
+        </div>
+      </section>
+
+      <section class="feature-panel feature-panel-warm reveal">
+        <div>
+          <p class="section-kicker">6 · Themes</p>
+          <h2>"I want the background to match whoever's using it."</h2>
+          <p>
+            Charlie wanted the app to feel different depending on who was riding. So I built
+            seven illustrated themes, each with continuous motion that respects Reduce Motion:
+          </p>
+          <ul class="check-list">
+            <li>Sky, with drifting clouds.</li>
+            <li>Sunset, with a warm light gradient.</li>
+            <li>Forest, with falling leaves.</li>
+            <li>Underwater, with rising bubbles.</li>
+            <li>Dinosaur, with a bobbing lizard.</li>
+            <li>Space, with twinkling stars.</li>
+            <li>Racing Track, for the speed-hunters.</li>
+          </ul>
+          <p>
+            Riders can also use their own photo as a background if none of the seven feels
+            right. He also asked if his little brother could be added to rides. (Soon, mate.)
+          </p>
+        </div>
+      </section>
+
+      <section class="feature-panel reveal">
+        <div>
+          <p class="section-kicker">7 · The Fortnite mistake</p>
+          <h2>One sentence I shouldn't have used.</h2>
+          <p>
+            About halfway through the build, Charlie asked if I could add more badges. Then,
+            very thoughtfully, he suggested:
+          </p>
+          <p class="intro">"We could add it as an in-app purchase."</p>
+          <p>
+            I told him the app would be free forever, and to explain why I described what
+            I'd seen in the other cycling apps when I went looking: they were like a
+            Fortnite leaderboard, with everyone racing against everyone else, and a lot of
+            them wouldn't even let him join because of his age.
+          </p>
+          <p>
+            Telling a 9-year-old about a Fortnite leaderboard was a mistake. He loved the
+            sound of it.
+          </p>
+          <p>
+            The happy middle was the ride-buddy feature. When two phones running Pedal Quest
+            pair for a ride over encrypted Bluetooth and local Wi-Fi — no internet, no
+            central server, not linked to anyone's Apple ID — each one sees the other's
+            badges and speed live during the shared ride. Just the two of you. No strangers.
+            No leaderboards.
+          </p>
+        </div>
+      </section>
+
+      <section class="feature-panel feature-panel-warm reveal">
+        <div>
+          <p class="section-kicker">8 · And Charlie is still the tester</p>
+          <h2>Every meaningful change goes past a 9-year-old first.</h2>
+          <p>
+            Every meaningful change in Pedal Quest has been vetted by Charlie. He's still
+            the only person whose opinion on the app counts before App Review's. If
+            something looks weird to him, it doesn't go in. If something feels boring to
+            him, it gets rethought.
+          </p>
+          <p>
+            He loved the ride-buddy feature when I finished it. He's been waiting for the
+            "add your brother to rides" feature ever since. And that's roughly how we ended
+            up here.
+          </p>
+        </div>
+      </section>
+
+      <section class="privacy-banner reveal">
+        <div>
+          <p class="section-kicker">The privacy promise, in one paragraph</p>
+          <h2>I didn't want my son's data shared with anyone.</h2>
+          <p>
+            So I built an app with nowhere for it to be shared to. Pedal Quest has no
+            servers. No analytics SDKs. No advertising frameworks. No third-party trackers.
+            Rides sync only to the user's own private iCloud — which only they can see —
+            and the app works offline if iCloud is unavailable.
+          </p>
+        </div>
+
+        <a class="button secondary" href="privacy.html">Read the full Privacy Policy</a>
+      </section>
+
+      <section class="download-card reveal">
+        <p class="section-kicker">Available on the App Store</p>
+        <h2>Pedal Quest is made for iPhone and iPad.</h2>
+        <p>
+          Designed for iOS and iPadOS 26 or later. Free, with no in-app purchases — at
+          Charlie's gentle suggestion and my gentle refusal.
+        </p>
+
+        <a
+          href="https://apps.apple.com/app/id6769257760"
+          class="appstore-badge"
+          target="_blank"
+          rel="noopener"
+          aria-label="Download Pedal Quest on the App Store"
+        >
+          <img
+            src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/en-gb?releaseDate=1747879200"
+            alt="Download on the App Store"
+            height="56"
+          />
+        </a>
+
+        <div class="link-grid">
+          <a class="button primary" href="marketing.html">Back to About</a>
+          <a class="button secondary" href="index.html">Get Support</a>
+        </div>
+      </section>
+
+      <footer>
+        <p>
+          For support, feedback or privacy questions, please email:
+          <a href="mailto:marc@iamcoding.uk">marc@iamcoding.uk</a>
+        </p>
+
+        <p>
+          <a href="index.html">Support</a>
+          <span aria-hidden="true"> · </span>
+          <a href="marketing.html">About</a>
+          <span aria-hidden="true"> · </span>
+          <a href="privacy.html">Privacy policy</a>
+        </p>
+
+        <p>© 2026 Pedal Quest. All rights reserved.</p>
+      </footer>
+    </article>
+  </main>
+
+  <script src="app.js" defer></script>
+</body>
+</html>
