@@ -565,8 +565,14 @@ strong {
 }
 
 .site-bar .site-mark::before {
-  content: "🚲";
-  font-size: 1.25rem;
+  content: "";
+  display: inline-block;
+  width: 22px;
+  height: 22px;
+  background-image: url("/favicon-32x32.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
 .site-bar nav {
@@ -1002,6 +1008,14 @@ ul:not(.check-list):not(.hero-actions):not(.link-grid):not(.toc) li + li {
   filter: brightness(1.06);
 }
 
+/* Underwater theme — accent is a very light cyan (#67e8f9 → #a5f3fc),
+   so the default white label on .button.primary loses contrast. Force
+   a dark navy label on this theme only. Every other theme is unaffected. */
+body[data-theme="underwater"] .button.primary,
+body[data-theme="underwater"] .button.primary:hover {
+  color: #124f8d;
+}
+
 .button.secondary,
 .nav-button {
   color: var(--accent-strong);
@@ -1383,7 +1397,155 @@ footer p {
 }
 
 /* -------------------------------------------------------------
-   17. Print
+   17. Interactive — feature card tilt + theme-aware glow
+   Subtle 3D rotation on cursor move, with an ambient glow that
+   reads var(--accent-soft) so it follows the active theme. Coarse
+   pointer + prefers-reduced-motion fall back to the simple lift.
+------------------------------------------------------------- */
+
+.feature-grid {
+  perspective: 1400px;
+}
+
+.feature-card {
+  position: relative;
+  transform-style: preserve-3d;
+  isolation: isolate;
+}
+
+/* Ambient glow reads the active theme's accent — Sky blue, Sunset pink,
+   Forest green, Underwater deep blue, etc. — so the cards change with
+   the theme picker. Soft and wide. */
+.feature-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(
+    320px circle at var(--gx, 50%) var(--gy, 50%),
+    var(--accent-soft),
+    transparent 65%
+  );
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Specular catch — small white highlight that tracks the cursor like
+   raking light across the card. Overlay blends to keep it tasteful. */
+.feature-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(
+    140px circle at var(--gx, 50%) var(--gy, 50%),
+    rgba(255, 255, 255, 0.22),
+    transparent 60%
+  );
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+  z-index: 1;
+  mix-blend-mode: overlay;
+}
+
+.feature-card:hover::before,
+.feature-card:hover::after {
+  opacity: 1;
+}
+
+/* Inner content sits above the glow layers and gains depth on hover. */
+.feature-card > * {
+  position: relative;
+  z-index: 2;
+}
+
+/* Tilt + parallax only on devices that can track a fine pointer.
+   Coarse-pointer (touch) keeps the original translateY(-4px) lift. */
+@media (hover: hover) and (pointer: fine) {
+  .feature-card {
+    --rx: 0deg;
+    --ry: 0deg;
+    transition: transform 0.12s linear, box-shadow 0.25s ease;
+    will-change: transform;
+  }
+
+  .feature-card:hover {
+    transform: rotateX(var(--rx)) rotateY(var(--ry));
+  }
+
+  .feature-card [data-depth] {
+    transform: translateZ(calc(var(--d, 0) * 1px));
+    transition: transform 0.12s linear;
+    will-change: transform;
+  }
+}
+
+/* Reduced motion — keep the original calm static lift only. */
+@media (prefers-reduced-motion: reduce) {
+  .feature-card:hover {
+    transform: translateY(-4px) !important;
+  }
+  .feature-card [data-depth] {
+    transform: none !important;
+  }
+}
+
+/* ------- Magnetic CTAs + theme-tinted click pulse -------
+   Gentle pointer-following on .button.primary, .button.secondary
+   and .appstore-badge. On click, a button-shaped pulse radiates
+   outward using the active theme's --accent. Pull is fine-pointer
+   only; touch + reduced-motion keep the existing calm hover lift. */
+
+@media (hover: hover) and (pointer: fine) {
+  /* Allow the JS-written --tx/--ty to combine with the existing -2px lift.
+     When --tx/--ty are 0, this collapses to the original translateY(-2px). */
+  .button:hover,
+  .nav-button:hover {
+    transform: translate(var(--tx, 0px), calc(var(--ty, 0px) - 2px));
+  }
+  .appstore-badge:hover {
+    transform: translate(var(--tx, 0px), calc(var(--ty, 0px) - 2px));
+  }
+
+  .button.primary,
+  .button.secondary,
+  .appstore-badge {
+    will-change: transform;
+  }
+}
+
+/* Click pulse — appended to <body> by JS so it can radiate beyond any
+   overflow-hidden parent. Sized + shaped to the clicked element. Glow
+   layers read the active theme's accent tokens, so the pulse changes
+   colour with the theme picker automatically. */
+.cta-pulse {
+  position: fixed;
+  pointer-events: none;
+  z-index: 9999;
+  background: transparent;
+  box-shadow:
+    0 0 0 2px var(--accent),
+    0 0 22px 4px var(--accent-ring),
+    0 0 50px 12px var(--accent-soft);
+  animation: cta-pulse-out 0.7s cubic-bezier(0.22, 0.68, 0.39, 0.98) forwards;
+  transform-origin: center;
+  will-change: transform, opacity;
+}
+
+@keyframes cta-pulse-out {
+  0%   { transform: scale(1);   opacity: 0.9; }
+  100% { transform: scale(1.4); opacity: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cta-pulse { display: none !important; }
+}
+
+/* -------------------------------------------------------------
+   18. Print
 ------------------------------------------------------------- */
 
 @media print {
