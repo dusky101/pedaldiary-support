@@ -1,6 +1,6 @@
-# Pedal Quest — Support, Marketing & Privacy site
+# Pedal Diary — Support, Marketing & Privacy site
 
-This folder is a self-contained static website for the Pedal Quest cycling app.
+This folder is a self-contained static website for the Pedal Diary cycling app.
 It serves the three URLs that App Store Connect needs:
 
 - **Support URL** → `index.html`
@@ -21,7 +21,7 @@ A custom `404.html` and a sticky theme switcher round it out.
 | `404.html`       | Custom not-found page                                                |
 | `styles.css`     | All design tokens, 7 themes, animations, responsive rules            |
 | `app.js`         | Theme picker (with localStorage persistence) and scroll-reveal       |
-| `PQTitle.png`    | The Pedal Quest title logo *(copy this in — see below)*              |
+| `PQTitle.png`    | The Pedal Diary title logo *(copy this in — see below)*              |
 
 ---
 
@@ -64,9 +64,9 @@ GitHub Pages will redeploy automatically within a minute or two. The site will
 be live at:
 
 ```
-https://pedalquest.iamcoding.uk/
-https://pedalquest.iamcoding.uk/marketing.html
-https://pedalquest.iamcoding.uk/privacy.html
+https://pedaldiary.iamcoding.uk/
+https://pedaldiary.iamcoding.uk/marketing.html
+https://pedaldiary.iamcoding.uk/privacy.html
 ```
 
 Those are the URLs you give App Store Connect.

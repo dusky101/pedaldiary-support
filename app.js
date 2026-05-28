@@ -1,4 +1,4 @@
-// Pedal Quest — site behaviour
+// Pedal Diary — site behaviour
 // Theme switcher (with localStorage persistence) and scroll reveal.
 // Vanilla JS, no dependencies. Loads with `defer` so DOM is parsed.
 
