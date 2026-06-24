@@ -1,0 +1,13 @@
+# Bucket A — local-only Claude config, instructions and hooks.
+# The repo root IS the live site, so these must never be committed/published.
+# They load from disk regardless of git status; this file keeps them off
+# pedaldiary.iamcoding.uk. (Bucket-B pages such as buddy.html are NOT listed
+# here — they are meant to be committed and served, just unlisted.)
+.claude/
+CLAUDE.md
+
+# OS cruft — can leak local file/directory listings if committed.
+.DS_Store
+
+# Editor workspace settings — harmless but fetchable if committed.
+.vscode/
