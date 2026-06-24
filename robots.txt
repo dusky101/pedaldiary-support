@@ -1,0 +1,9 @@
+# Pedal Diary — https://pedaldiary.iamcoding.uk
+# Static support, marketing and privacy site for the Pedal Diary iOS app.
+# Unlisted pages are kept out of search by their own noindex meta and by being
+# absent from the sitemap — not by Disallow rules here, which would only
+# advertise the paths they were meant to hide.
+User-agent: *
+Allow: /
+
+Sitemap: https://pedaldiary.iamcoding.uk/sitemap.xml

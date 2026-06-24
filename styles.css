@@ -97,6 +97,9 @@ body[data-theme="underwater"] {
   --ink: #f8fafc;
   --ink-soft: #cbd5e1;
   --ink-muted: #94a3b8;
+  /* This theme's accent is pale cyan, so any label sitting ON the accent
+     (primary buttons, the selected FAQ chip) needs a dark navy, not white. */
+  --ink-on-accent: #124f8d;
   --card: rgba(13, 69, 128, 0.7);
   --card-strong: rgba(13, 69, 128, 0.92);
   --card-border: rgba(255, 255, 255, 0.22);
@@ -1581,5 +1584,119 @@ footer p {
 
   details summary::after {
     display: none;
+  }
+}
+
+/* -------------------------------------------------------------
+   FAQ tools — search + topic filter on the support page.
+   Progressive enhancement: hidden until app.js reveals it.
+------------------------------------------------------------- */
+
+.faq-tools {
+  margin: 0 0 18px;
+  display: grid;
+  gap: 12px;
+}
+
+/* Stay hidden until app.js reveals the toolbar — the display rule above would
+   otherwise override the UA [hidden] rule and show it to no-JS visitors. */
+.faq-tools[hidden] {
+  display: none;
+}
+
+.faq-search {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  background: var(--card);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius-button);
+  box-shadow: var(--shadow-soft);
+}
+
+.faq-search-icon {
+  opacity: 0.7;
+}
+
+.faq-search input {
+  flex: 1;
+  min-width: 0;
+  border: 0;
+  background: transparent;
+  color: var(--ink);
+  font: inherit;
+  padding: 4px 0;
+}
+
+.faq-search input::placeholder {
+  color: var(--ink-muted);
+}
+
+.faq-search input:focus {
+  outline: none;
+}
+
+.faq-search:focus-within {
+  outline: 2px solid var(--accent-ring);
+  outline-offset: 2px;
+}
+
+.faq-cats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.faq-chip {
+  border: 1px solid var(--card-border);
+  background: var(--card);
+  color: var(--ink-soft);
+  padding: 6px 14px;
+  border-radius: var(--radius-button);
+  font: inherit;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: transform 0.15s ease, background 0.15s ease, color 0.15s ease;
+}
+
+.faq-chip:hover {
+  transform: translateY(-1px);
+}
+
+.faq-chip[aria-pressed="true"] {
+  background: var(--accent);
+  color: var(--ink-on-accent);
+  border-color: var(--accent);
+}
+
+.faq-chip:focus-visible {
+  outline: 2px solid var(--accent-ring);
+  outline-offset: 2px;
+}
+
+.faq-noresults {
+  margin: 4px 2px 0;
+  color: var(--ink-muted);
+}
+
+/* Highlight a deep-linked FAQ so a shared link lands somewhere obvious. */
+details:target {
+  outline: 3px solid var(--accent-ring);
+  outline-offset: 3px;
+}
+
+/* Fallback so a deep-linked answer never sits under the sticky header if it
+   aligns to the top (before JS centres it, or if JS is unavailable). */
+details[data-cat] {
+  scroll-margin-top: 6rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .faq-chip {
+    transition: none;
+  }
+  .faq-chip:hover {
+    transform: none;
   }
 }

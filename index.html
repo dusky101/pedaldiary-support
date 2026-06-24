@@ -27,6 +27,166 @@
       } catch (e) {}
     })();
   </script>
+
+  <script>
+    // Stash and strip a #faq-… deep link before the browser jumps to it (which
+    // would tuck it under the sticky header). app.js re-applies it, centred.
+    (function () {
+      try {
+        if (location.hash && /^#faq-/.test(location.hash)) {
+          window.__pdDeepLink = location.hash.slice(1);
+          history.replaceState(null, "", location.pathname + location.search);
+        }
+      } catch (e) {}
+    })();
+  </script>
+
+  <!-- FAQ structured data — keep answers consistent with the FAQs in the page body. -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "inLanguage": "en-GB",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "The trail isn't drawing on the map",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Open Settings → Privacy & Security → Location Services → Pedal Diary and set it to \"While Using the App\". The trail starts drawing once a few GPS points have been captured; an open space with a clear view of the sky helps the first fix."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "My phone locked mid-ride — did it still track?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. Pedal Diary keeps recording while the screen is locked, so a phone in a backpack still captures the trail, distance and speed. iOS shows a small blue indicator while that happens, and tracking stops as soon as the ride ends."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Will it work on a Wi-Fi-only iPad?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Only partly. Wi-Fi-only iPads have no GPS chip, so they cannot draw a trail or measure distance on a ride, and a personal hotspot only adds internet, not GPS. A Wi-Fi-only iPad is still lovely for reviewing saved rides, photos, themes and badges at home; for the ride itself, use an iPhone or a cellular iPad."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How do I change the rider's nickname or avatar?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "In the app: Settings → Me. From there you can change the nickname, the avatar (symbol or photo), the age and the things they love. Everything updates across the app straight away."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How do I save ride photos automatically to my Photos app?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "In the app: Settings → Me → App look and feel → Ride photos → Save automatically. New photos taken inside Pedal Diary then also appear in your Photos app. Tap Allow when iOS asks; Pedal Diary only ever adds photos, it never reads your existing library."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How do I stop ride photos saving to my Photos app?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "In the app: Settings → Me → App look and feel → Ride photos → Save manually (or Don't save). You can also set iOS Settings → Privacy & Security → Photos → Pedal Diary → None. Photos already added to your library stay where they are."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How do I turn off the weather feature?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "In the app: Settings → Grown-up only → Local weather, and toggle it off. No weather requests are made when it is off, and the weather cards disappear from the home and paused screens."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How do I add a grown-up PIN?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "In the app: Settings → Grown-up only → Set a PIN. Choose and confirm a four-digit number. The destructive grown-up controls then ask for it first. The PIN is stored securely on the device in the iOS Keychain and never leaves it."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "I've forgotten the grown-up PIN",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The PIN is stored in the iOS Keychain and cannot be recovered remotely. Deleting and reinstalling the app clears it; your iCloud-synced rides and badges return when you sign back in."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How do I delete every ride?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "In the app: Settings → Grown-up only, then hold the \"Delete every ride\" button for 1.5 seconds. The deletion syncs across every device signed in to the same iCloud account."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How do I wipe everything and start fresh?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Three layers: delete every ride inside the app (hold for 1.5 seconds); remove the app from the Home Screen; and remove the iCloud copy via Settings → [your name] → iCloud → Manage Account Storage → Pedal Diary → Delete from iCloud. Pedal Diary has no servers of its own, so once your device and iCloud copies are gone, nothing remains."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is ride-buddy pairing, and should I turn it on?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Ride-buddy lets two phones running Pedal Diary pair for a single ride and see each other's nickname and badges. It is off by default; a grown-up turns it on in Settings → Grown-up only → Ride-buddy pairing on both phones. It uses Bluetooth and local Wi-Fi only — no internet, no central server, not linked to any Apple ID — and either rider can cancel at any time."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How do I pair two devices for a ride?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "A grown-up first turns on Settings → Grown-up only → Ride-buddy pairing on both devices. On a ride, tap \"Find a ride buddy\". The first match within Bluetooth and Wi-Fi range shows a confirmation card on both phones; either rider can cancel. The connection is encrypted and never touches the internet."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How do I change the background theme?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Tap the theme picker in the top-right of the home screen, or open Settings → App look and feel → Background theme. Choose Sky, Sunset, Forest, Underwater, Dinosaur, Space or Racing Track. There is also a \"Use my own photo\" option."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Will my rides survive a new phone?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes, if you were signed in to iCloud when the rides were saved. Sign in to iCloud on the new device, reinstall Pedal Diary, and every ride, badge, photo and theme returns. The grown-up PIN does not sync — it is per-device — so you will be asked to set a new one if you had one."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "The app feels slow or the map isn't loading",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Close Pedal Diary fully and open it again. If map tiles still look patchy, that is usually an iOS-wide thing — open Apple Maps to check. If something looks genuinely broken rather than slow, email marc@iamcoding.uk with a description and a screenshot."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Does Pedal Diary collect any data about us?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. There are no analytics, no advertising SDKs, no third-party trackers and no servers run by Pedal Diary. Rides, photos and diary entries stay on your devices and, if you are signed in to iCloud, inside your own private iCloud which only you can see."
+        }
+      }
+    ]
+  }
+  </script>
 </head>
 
 <body data-theme="sky">
@@ -48,6 +208,8 @@
         class="title-logo small"
         src="PQTitle.png"
         alt="Pedal Diary"
+        width="1254"
+        height="1254"
       />
 
       <p class="eyebrow">Support</p>
@@ -110,7 +272,35 @@
         <h2>Common questions</h2>
       </div>
 
-      <details>
+      <div class="faq-tools" data-faq-tools hidden>
+        <label class="faq-search">
+          <span class="faq-search-icon" aria-hidden="true">🔍</span>
+          <input
+            type="search"
+            id="faq-search-input"
+            placeholder="Search help…"
+            aria-label="Search the help questions"
+            autocomplete="off"
+          />
+        </label>
+        <div class="faq-cats" role="group" aria-label="Filter questions by topic">
+          <button type="button" class="faq-chip" data-cat="all" aria-pressed="true">All</button>
+          <button type="button" class="faq-chip" data-cat="tracking" aria-pressed="false">Tracking</button>
+          <button type="button" class="faq-chip" data-cat="devices" aria-pressed="false">Devices</button>
+          <button type="button" class="faq-chip" data-cat="photos" aria-pressed="false">Photos</button>
+          <button type="button" class="faq-chip" data-cat="personalisation" aria-pressed="false">Personalising</button>
+          <button type="button" class="faq-chip" data-cat="ridebuddy" aria-pressed="false">Ride buddy</button>
+          <button type="button" class="faq-chip" data-cat="controls" aria-pressed="false">Grown-up controls</button>
+          <button type="button" class="faq-chip" data-cat="privacy" aria-pressed="false">Privacy</button>
+          <button type="button" class="faq-chip" data-cat="troubleshooting" aria-pressed="false">Troubleshooting</button>
+        </div>
+        <p class="faq-noresults" data-faq-noresults hidden>
+          No questions match that search.
+          <a href="mailto:marc@iamcoding.uk">Email me</a> and I'll help.
+        </p>
+      </div>
+
+      <details id="faq-trail" data-cat="tracking">
         <summary>The trail isn't drawing on the map</summary>
         <div class="faq-body">
           <p>
@@ -119,7 +309,7 @@
         </div>
       </details>
 
-      <details>
+      <details id="faq-locked" data-cat="tracking">
         <summary>My phone locked mid-ride — did it still track?</summary>
         <div class="faq-body">
           <p>
@@ -128,7 +318,7 @@
         </div>
       </details>
 
-      <details>
+      <details id="faq-wifi-ipad" data-cat="devices">
         <summary>Will it work on a Wi-Fi-only iPad?</summary>
         <div class="faq-body">
           <p>
@@ -140,7 +330,7 @@
         </div>
       </details>
 
-      <details>
+      <details id="faq-nickname" data-cat="personalisation">
         <summary>How do I change the rider's nickname or avatar?</summary>
         <div class="faq-body">
           <p>
@@ -149,7 +339,7 @@
         </div>
       </details>
 
-      <details>
+      <details id="faq-photos-save" data-cat="photos">
         <summary>How do I save ride photos automatically to my Photos app?</summary>
         <div class="faq-body">
           <p>
@@ -161,7 +351,7 @@
         </div>
       </details>
 
-      <details>
+      <details id="faq-photos-stop" data-cat="photos">
         <summary>How do I stop ride photos saving to my Photos app?</summary>
         <div class="faq-body">
           <p>
@@ -173,7 +363,7 @@
         </div>
       </details>
 
-      <details>
+      <details id="faq-weather" data-cat="controls">
         <summary>How do I turn off the weather feature?</summary>
         <div class="faq-body">
           <p>
@@ -182,7 +372,7 @@
         </div>
       </details>
 
-      <details>
+      <details id="faq-add-pin" data-cat="controls">
         <summary>How do I add a grown-up PIN?</summary>
         <div class="faq-body">
           <p>
@@ -191,7 +381,7 @@
         </div>
       </details>
 
-      <details>
+      <details id="faq-forgot-pin" data-cat="controls">
         <summary>I've forgotten the grown-up PIN</summary>
         <div class="faq-body">
           <p>
@@ -200,7 +390,7 @@
         </div>
       </details>
 
-      <details>
+      <details id="faq-delete-rides" data-cat="controls">
         <summary>How do I delete every ride?</summary>
         <div class="faq-body">
           <p>
@@ -209,7 +399,7 @@
         </div>
       </details>
 
-      <details>
+      <details id="faq-wipe" data-cat="controls">
         <summary>How do I wipe everything and start fresh?</summary>
         <div class="faq-body">
           <p>
@@ -232,7 +422,7 @@
         </div>
       </details>
 
-      <details>
+      <details id="faq-ridebuddy" data-cat="ridebuddy">
         <summary>What is ride-buddy pairing, and should I turn it on?</summary>
         <div class="faq-body">
           <p>
@@ -244,7 +434,7 @@
         </div>
       </details>
 
-      <details>
+      <details id="faq-pair-devices" data-cat="ridebuddy">
         <summary>How do I pair two devices for a ride?</summary>
         <div class="faq-body">
           <p>
@@ -253,7 +443,7 @@
         </div>
       </details>
 
-      <details>
+      <details id="faq-theme" data-cat="personalisation">
         <summary>How do I change the background theme?</summary>
         <div class="faq-body">
           <p>
@@ -262,7 +452,7 @@
         </div>
       </details>
 
-      <details>
+      <details id="faq-new-phone" data-cat="devices">
         <summary>Will my rides survive a new phone?</summary>
         <div class="faq-body">
           <p>
@@ -271,7 +461,7 @@
         </div>
       </details>
 
-      <details>
+      <details id="faq-slow" data-cat="troubleshooting">
         <summary>The app feels slow or the map isn't loading</summary>
         <div class="faq-body">
           <p>
@@ -283,7 +473,7 @@
         </div>
       </details>
 
-      <details>
+      <details id="faq-data" data-cat="privacy">
         <summary>Does Pedal Diary collect any data about us?</summary>
         <div class="faq-body">
           <p>

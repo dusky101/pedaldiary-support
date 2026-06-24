@@ -357,6 +357,145 @@
   }
 
   // ---------------------------------------------------------------
+  // Support-page FAQ tools — search, topic filter and deep-linking.
+  // Progressive enhancement: the toolbar is hidden in HTML and only
+  // revealed here, so no-JS visitors simply see the full FAQ list.
+  // ---------------------------------------------------------------
+
+  function setupFaqTools() {
+    const items = Array.from(document.querySelectorAll("details[data-cat]"));
+    if (!items.length) return; // not the support page
+
+    const tools = document.querySelector("[data-faq-tools]");
+    if (tools) tools.removeAttribute("hidden");
+
+    const input = document.getElementById("faq-search-input");
+    const chips = Array.from(document.querySelectorAll(".faq-chip"));
+    const noResults = document.querySelector("[data-faq-noresults]");
+    if (noResults) noResults.setAttribute("aria-live", "polite");
+
+    const reduced = window.matchMedia(
+      "(prefers-reduced-motion: reduce)"
+    ).matches;
+    const norm = (s) => s.toLowerCase();
+    let activeCat = "all";
+
+    function apply() {
+      const q = norm(input ? input.value.trim() : "");
+      let shown = 0;
+      items.forEach((d) => {
+        const matchesCat = activeCat === "all" || d.dataset.cat === activeCat;
+        const matchesText = !q || norm(d.textContent).indexOf(q) !== -1;
+        const visible = matchesCat && matchesText;
+        d.hidden = !visible;
+        if (visible) shown += 1;
+      });
+      if (noResults) noResults.hidden = shown !== 0;
+    }
+
+    function setActiveCat(cat) {
+      activeCat = cat || "all";
+      chips.forEach((c) =>
+        c.setAttribute(
+          "aria-pressed",
+          c.dataset.cat === activeCat ? "true" : "false"
+        )
+      );
+    }
+
+    if (input) input.addEventListener("input", apply);
+
+    chips.forEach((chip) => {
+      chip.addEventListener("click", () => {
+        setActiveCat(chip.dataset.cat);
+        apply();
+      });
+    });
+
+    function centreOn(target, smooth) {
+      // Centre on the question (summary), not the whole answer: the summary is
+      // short and its position is stable as the answer expands below it, so this
+      // stays clear of the sticky header and works for long answers too.
+      const anchor = target.querySelector("summary") || target;
+      const rect = anchor.getBoundingClientRect();
+      const top =
+        rect.top + window.pageYOffset - window.innerHeight / 2 + rect.height / 2;
+      window.scrollTo({
+        top: Math.max(0, top),
+        behavior: smooth && !reduced ? "smooth" : "auto",
+      });
+    }
+
+    function revealAncestors(el) {
+      let n = el;
+      while (n && n !== document.body) {
+        if (n.classList && n.classList.contains("reveal")) {
+          n.classList.add("is-revealed");
+        }
+        n = n.parentElement;
+      }
+    }
+
+    // Gate the hash writes below: while a deep link is being applied during
+    // load, a hash in the URL would re-arm the browser's native scroll-to-
+    // fragment (which honours scroll-margin-top and lands under the header).
+    let allowHashWrite = true;
+
+    function openTarget(id, smooth) {
+      if (!id) return;
+      const target = document.getElementById(id);
+      if (!target || target.tagName.toLowerCase() !== "details") return;
+      // Clear any filter so the requested answer is guaranteed visible.
+      setActiveCat("all");
+      if (input) input.value = "";
+      apply();
+      revealAncestors(target);
+      target.open = true;
+      requestAnimationFrame(() =>
+        requestAnimationFrame(() => centreOn(target, smooth))
+      );
+    }
+
+    window.addEventListener("hashchange", () => {
+      openTarget(location.hash.slice(1), true);
+    });
+
+    // Reflect an opened FAQ in the URL so a direct link can be shared.
+    items.forEach((d) => {
+      d.addEventListener("toggle", () => {
+        if (allowHashWrite && d.open && d.id) {
+          history.replaceState(null, "", "#" + d.id);
+        }
+      });
+    });
+
+    apply();
+
+    // The <head> stashes any #faq-… deep link into window.__pdDeepLink and strips
+    // it from the URL. Keep the URL hash-free until after load, centre with no
+    // fragment present, then restore the shareable hash once the browser's
+    // load-time jump can no longer fire.
+    const deepLink =
+      window.__pdDeepLink || (location.hash ? location.hash.slice(1) : "");
+    if (deepLink) {
+      allowHashWrite = false;
+      openTarget(deepLink, false);
+      window.addEventListener("load", function () {
+        const t = document.getElementById(deepLink);
+        requestAnimationFrame(function () {
+          if (t) centreOn(t, false);
+          setTimeout(function () {
+            allowHashWrite = true;
+            try {
+              history.replaceState(null, "", "#" + deepLink);
+            } catch (e) {}
+          }, 80);
+        });
+      });
+    }
+  }
+
+  // ---------------------------------------------------------------
   // Boot
   // ---------------------------------------------------------------
 
@@ -368,6 +507,7 @@
     markCurrentNav();
     setupTiltCards();
     setupMagneticCtas();
+    setupFaqTools();
   }
 
   if (document.readyState === "loading") {
