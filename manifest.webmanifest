@@ -1,0 +1,25 @@
+{
+  "name": "Pedal Diary",
+  "short_name": "Pedal Diary",
+  "description": "A private cycling adventure diary for families.",
+  "lang": "en-GB",
+  "dir": "ltr",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#9ecff5",
+  "theme_color": "#2563eb",
+  "icons": [
+    {
+      "src": "/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    },
+    {
+      "src": "/PQTitle.png",
+      "sizes": "1254x1254",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ]
+}

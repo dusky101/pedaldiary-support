@@ -31,6 +31,13 @@
     } catch (_) {
       // localStorage unavailable (Safari private mode etc.) — fall through.
     }
+    // First visit, no saved choice: honour an OS dark preference with a dark
+    // theme so the site feels at home; any explicit pick overrides this.
+    try {
+      if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+        return "space";
+      }
+    } catch (_) {}
     return DEFAULT_THEME;
   }
 
@@ -92,6 +99,7 @@
         "</span>";
       btn.addEventListener("click", () => {
         applyTheme(t.id);
+        confettiBurst();
         closePanel();
         trigger.focus();
       });
@@ -496,6 +504,75 @@
   }
 
   // ---------------------------------------------------------------
+  // Reading-progress bar — tracks scroll position (most useful on the
+  // long story/privacy pages; harmless on short ones).
+  // ---------------------------------------------------------------
+
+  function setupScrollProgress() {
+    const bar = document.createElement("div");
+    bar.className = "scroll-progress";
+    bar.setAttribute("aria-hidden", "true");
+    document.body.appendChild(bar);
+
+    let ticking = false;
+    function update() {
+      const doc = document.documentElement;
+      const max = doc.scrollHeight - doc.clientHeight;
+      const ratio = max > 0 ? Math.min(1, doc.scrollTop / max) : 0;
+      bar.style.transform = "scaleX(" + ratio + ")";
+      ticking = false;
+    }
+    function onScroll() {
+      if (!ticking) {
+        ticking = true;
+        requestAnimationFrame(update);
+      }
+    }
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll, { passive: true });
+    update();
+  }
+
+  // ---------------------------------------------------------------
+  // Theme-change confetti — a small accent-tinted burst, fired only on a
+  // user theme change (never on load) and skipped under reduced motion.
+  // ---------------------------------------------------------------
+
+  function confettiBurst() {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    const accent =
+      getComputedStyle(document.body).getPropertyValue("--accent").trim() ||
+      "#2563eb";
+    const colours = [accent, "#facc15", "#ffffff"];
+    for (let i = 0; i < 18; i++) {
+      const piece = document.createElement("span");
+      piece.className = "confetti-piece";
+      piece.style.left = Math.random() * 100 + "vw";
+      piece.style.background = colours[i % colours.length];
+      piece.style.animationDelay = Math.floor(Math.random() * 140) + "ms";
+      document.body.appendChild(piece);
+      piece.addEventListener("animationend", () => piece.remove(), {
+        once: true,
+      });
+    }
+  }
+
+  // ---------------------------------------------------------------
+  // Service worker — registered late (on load) so it never competes with
+  // first paint. The worker is network-first, so the live site is never
+  // served stale; the cache is only an offline fallback.
+  // ---------------------------------------------------------------
+
+  function registerServiceWorker() {
+    if (!("serviceWorker" in navigator)) return;
+    window.addEventListener("load", function () {
+      navigator.serviceWorker.register("/sw.js").catch(function () {
+        // Registration fails on file:// or unsupported contexts — ignore.
+      });
+    });
+  }
+
+  // ---------------------------------------------------------------
   // Boot
   // ---------------------------------------------------------------
 
@@ -508,6 +585,8 @@
     setupTiltCards();
     setupMagneticCtas();
     setupFaqTools();
+    setupScrollProgress();
+    registerServiceWorker();
   }
 
   if (document.readyState === "loading") {
